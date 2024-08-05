@@ -7,6 +7,7 @@ type Props = {
   defaultImageUrl?: string;
   defaultFile?: File;
   defaultAction?: boolean;
+  noShowImage?: boolean;
 };
 
 export default function FileUploadItem(props: Props) {
