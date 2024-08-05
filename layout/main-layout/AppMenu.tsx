@@ -65,6 +65,22 @@ const AppMenu = () => {
                         { label: 'Tạo đối tác mới', icon: 'pi pi-fw pi-bookmark', to: '/partners/create' }
                     ]
                 },
+                {
+                    label: 'Department',
+                    icon: 'pi pi-fw pi-list',
+                    items: [
+                        { label: 'Danh sách Phòng', icon: 'pi pi-fw pi-bookmark', to: '/department' },
+                        { label: 'Tạo Phòng', icon: 'pi pi-fw pi-bookmark', to: '/department/create' }
+                    ]
+                },
+                {
+                    label: 'Information',
+                    icon: 'pi pi-fw pi-list',
+                    items: [
+                        { label: 'Danh sách Thông tin', icon: 'pi pi-fw pi-bookmark', to: '/information' },
+                        { label: 'Tạo Thông tin', icon: 'pi pi-fw pi-bookmark', to: '/information/create' }
+                    ]
+                },
             ]
         }
     ];
