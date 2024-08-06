@@ -91,13 +91,13 @@ const AppMenu = () => {
                     return (
                         <div>
                             <li className="menu-separator" key={i}>
-                                {item.label}
+                                    {item.label}
                             </li>
                             <div>
                                 {item.items.map((it, index) => (
                                     <div key={index}>
                                         {it.items.map((item, index) => (
-                                            <div key={index}>
+                                            <div key={index} style={{padding:5, borderBottom: '1px solid #ccc'}}>
                                                 <Link href={item.to}>{item.label}</Link>
                                             </div>
                                         ))}
