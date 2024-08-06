@@ -120,7 +120,7 @@ export default function NewsCreatePageView(props: PropsComponent) {
               body: data.body
           }).then((rs) => {
               if (rs) {
-                  setResultMessage('Tạo mới một blog thành công');
+                  setResultMessage('Tạo mới một news thành công');
                   router.replace('/news');
               }
               setLoading(false);

@@ -10,18 +10,18 @@ import { Toast } from "primereact/toast"
 import { useEffect, useRef, useState } from "react"
 import LoadingBlockUI from "../component/loading-block-ui"
 import { useSWRConfig } from 'swr'
-import { deleteNews, NewsForCard } from "../../api/services/newService"
+import { deleteTrainingFields, TrainingFieldsForCard } from "../../api/services/trainingFieldsService"
 
 type PropsComponent = {
-  listNews: Array<NewsForCard>
+  listTrainingFields: Array<TrainingFieldsForCard>
 }
 
-export default function ListNewsPageView(props: PropsComponent) {
+export default function ListTrainingFieldsPageView(props: PropsComponent) {
   const router = useRouter()
   const toast = useRef<Toast>(null);
   const [resultMessage, setResultMessage] = useSessionStorage('', 'result-message');
   const [displayConfirmation, setDisplayConfirmation] = useState(false);
-  const [selectNews, setSelectNews] = useState<string>();
+  const [selectTrainingFields, setSelectTrainingFields] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
   const { mutate } = useSWRConfig()
 
@@ -35,13 +35,13 @@ export default function ListNewsPageView(props: PropsComponent) {
     }
   }, [resultMessage, setResultMessage]);
 
-  const handleDeleteNews = async (idNews?: string) => {
+  const handleDeleteTrainingFields = async (idTrainingFields?: string) => {
     try {
       setLoading(true)
-      idNews && await deleteNews(idNews).then((rs) => {
+      idTrainingFields && await deleteTrainingFields(idTrainingFields).then((rs) => {
         if (rs) {
-          mutate('getNewsListPageData')
-          setSelectNews("");
+          mutate('getTrainingFieldsListPageData')
+          setSelectTrainingFields("");
           setLoading(false);
           setDisplayConfirmation(false);
         }
@@ -55,21 +55,20 @@ export default function ListNewsPageView(props: PropsComponent) {
     <Toast ref={toast} position="top-center" />
     <div className="card">
       <Button label="Thêm mới" severity="success" outlined onClick={() => {
-        router.push("/news/create")
+        router.push("/training-fields/create")
       }} />
-      <h5>Danh sách tin tức (News)</h5>
-      <DataTable value={props.listNews} scrollable scrollHeight="700px" className="mt-3">
+      <h5>Danh sách tin tức (TrainingFields)</h5>
+      <DataTable value={props.listTrainingFields} scrollable scrollHeight="700px" className="mt-3">
         <Column field="id" header="ID" style={{ flexGrow: 1, flexBasis: '160px' }} frozen className="font-bold"></Column>
-        <Column field="thumbnailNews" header="thumbnailNews" style={{ flexGrow: 1, flexBasis: '100px'}} alignFrozen="left"></Column>
-        <Column field="description" header="Mô tả" style={{ flexGrow: 1, flexBasis: '100px' }} alignFrozen="left"></Column>
+        <Column field="thumbnailTrainingFields" header="thumbnailTrainingFields" style={{ flexGrow: 1, flexBasis: '100px'}} alignFrozen="left"></Column>
         <Column field="title" header="Title" style={{ flexGrow: 1, flexBasis: '100px' }} alignFrozen="left"></Column>
         <Column field="body" header="Body" style={{ flexGrow: 1, flexBasis: '200px'}}></Column>
         <Column field="created_at" header="Ngày tạo" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
-        <Column field="company" header="Tác vụ" style={{ flexGrow: 1, flexBasis: '200px' }} body={(data: NewsForCard) => (
+        <Column field="company" header="Tác vụ" style={{ flexGrow: 1, flexBasis: '200px' }} body={(data: TrainingFieldsForCard) => (
           <div className="flex gap-3">
             <Button label="Xóa" severity="secondary" outlined onClick={() => {
               setDisplayConfirmation(true)
-              setSelectNews(data.id)
+              setSelectTrainingFields(data.id)
             }} />
           </div>
         )}></Column>
@@ -81,13 +80,13 @@ export default function ListNewsPageView(props: PropsComponent) {
         footer={
           <>
             <Button type="button" label="Không" icon="pi pi-times" onClick={() => setDisplayConfirmation(false)} text />
-            <Button type="button" label="Có" icon="pi pi-check" onClick={() => handleDeleteNews(selectNews)} text autoFocus />
+            <Button type="button" label="Có" icon="pi pi-check" onClick={() => handleDeleteTrainingFields(selectTrainingFields)} text autoFocus />
           </>
         }
         style={{ width: '350px' }} modal>
         <div className="flex align-items-center justify-content-center">
           <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-          <span>Bạn có chắc muốn xóa tin tức này?</span>
+          <span>Bạn có chắc muốn xóa chương trình đào tạo này?</span>
         </div>
       </Dialog>
       <LoadingBlockUI visible={loading} />

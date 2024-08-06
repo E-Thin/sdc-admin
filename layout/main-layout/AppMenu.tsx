@@ -10,14 +10,6 @@ const AppMenu = () => {
             label: 'Quản lí',
             items: [
                 {
-                    label: 'Tài khoản',
-                    icon: 'pi pi-fw pi-list',
-                    items: [
-                        { label: 'Danh sách tài khoản', icon: 'pi pi-fw pi-bookmark', to: '/accounts' },
-                        { label: 'Tạo tài khoản', icon: 'pi pi-fw pi-bookmark', to: '/accounts/create' }
-                    ]
-                },
-                {
                     label: 'role (quyền)',
                     icon: 'pi pi-fw pi-list',
                     items: [
@@ -47,6 +39,14 @@ const AppMenu = () => {
                     items: [
                         { label: 'Danh sách sự kiện', icon: 'pi pi-fw pi-bookmark', to: '/event' },
                         { label: 'Tạo sự kiện', icon: 'pi pi-fw pi-bookmark', to: '/event/create' }
+                    ]
+                },
+                {
+                    label: 'Chương trình đào tạo',
+                    icon: 'pi pi-fw pi-list',
+                    items: [
+                        { label: 'Danh sách chương tình đào tạo', icon: 'pi pi-fw pi-bookmark', to: '/training-fields' },
+                        { label: 'Tạo mới', icon: 'pi pi-fw pi-bookmark', to: '/training-fields/create' }
                     ]
                 },
                 {
